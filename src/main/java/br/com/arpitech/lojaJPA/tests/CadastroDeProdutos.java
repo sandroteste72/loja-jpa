@@ -3,24 +3,22 @@ package br.com.arpitech.lojaJPA.tests;
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
+import br.com.arpitech.lojaJPA.dao.ProdutoDao;
+import br.com.arpitech.lojaJPA.models.Categoria;
 import br.com.arpitech.lojaJPA.models.Produto;
+import br.com.arpitech.lojaJPA.util.JPAUtil;
 
 public class CadastroDeProdutos {
 
 	public static void main(String[] args) {
-		Produto celular = new Produto();
-		celular.setNome("Samsung A32");
-		celular.setDescricao("Camera 64 megapixels 128 GB memoria");
-		celular.setPreco(new BigDecimal("1500"));
+		Produto celular = new Produto("Samsung A32", "Camera 64 megapixels 128 GB memoria", new BigDecimal("1500"), Categoria.CELULARES);
 
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("lojajpa");
-		EntityManager em = factory.createEntityManager();
-
+		EntityManager em = JPAUtil.getEntityManager();
+		ProdutoDao dao = new ProdutoDao(em);
+		
 		em.getTransaction().begin();
-		em.persist(celular);
+		dao.cadastrar(celular);
 		em.getTransaction().commit();
 		em.close();
 	}

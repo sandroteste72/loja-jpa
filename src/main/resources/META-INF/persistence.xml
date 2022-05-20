@@ -12,8 +12,7 @@
 			<property name="javax.persistence.jdbc.password" value="$SMA@dev2021!" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
             <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="true" />
-            <property name="hibernate.hbm2ddl.auto" value="update" /> <!-- valores possíveis: create, create-drop, update, validate -->
+            <property name="hibernate.hbm2ddl.auto" value="create" /> <!-- valores possíveis: create, create-drop, update, validate -->
 		</properties>
 	</persistence-unit>
 
